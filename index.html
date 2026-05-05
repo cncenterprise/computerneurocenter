@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Alma</title>
+
+<style>
+body {
+    background-color: black;
+    color: #00ff9f;
+    font-family: monospace;
+    text-align: center;
+    padding: 50px;
+}
+
+img {
+    max-width: 80%;
+    border: 1px solid #00ff9f;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+}
+
+button {
+    padding: 10px;
+    background: black;
+    border: 1px solid #00ff9f;
+    color: #00ff9f;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003322;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Tela final */
+#telaFinal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: #00ff9f;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+
+</head>
+<body>
+
+<h1>ALMA</h1>
+
+<p>Lost Lobby 4</p>
+
+<img src="Alma.png" alt="arquivo">
+
+<br><br>
+
+<input type="text" id="senha" placeholder="Resposta aqui">
+<button onclick="verificarSenha()">Ir</button>
+
+<p id="erro" class="hidden">incorreto.</p>
+
+<div id="conteudoSecreto" class="hidden">
+    <h2>Acesso liberado</h2>
+    <p>Continue. Nos liberte.</p>
+</div>
+
+<!-- Tela final -->
+<div id="telaFinal">
+    <h1 style="font-size:80px;">Lost Lobby 5 em andamento...</h1>
+</div>
+
+<!-- dica escondida -->
+<!-- talvez a resposta esteja invertida -->
+
+<script>
+function verificarSenha() {
+    var senha = document.getElementById("senha").value;
+
+    if(senha === "eles me querem dentro mike") {
+        document.getElementById("telaFinal").style.display = "flex";
+    } else {
+        document.getElementById("erro").style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
