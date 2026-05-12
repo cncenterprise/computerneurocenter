@@ -44,6 +44,51 @@ body {
     }
 }
 
+/* LOGIN */
+#loginScreen {
+    display: none;
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background: black;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBox {
+    width: 300px;
+
+    border: 1px solid #00ff9f;
+
+    background: rgba(0,0,0,0.9);
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+#perfil {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #00ff9f;
+
+    image-rendering: pixelated;
+}
+
+.dica {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
 /* SISTEMA */
 #desktop {
     display: none;
@@ -90,6 +135,16 @@ body {
 .icon img {
     width: 64px;
     margin-bottom: 10px;
+
+    image-rendering: pixelated;
+
+    filter:
+    brightness(0)
+    saturate(100%)
+    invert(74%)
+    sepia(84%)
+    saturate(747%)
+    hue-rotate(90deg);
 }
 
 /* JANELA */
@@ -103,6 +158,15 @@ body {
     left: 120px;
     display: none;
     flex-direction: column;
+
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.window.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .windowHeader {
@@ -161,6 +225,8 @@ body::after {
         transparent 1px,
         transparent 2px
     );
+
+    
 }
 
 </style>
@@ -175,6 +241,28 @@ body::after {
     <div class="bootText" style="animation-delay:3s;">Verificando integridade...</div>
     <div class="bootText" style="animation-delay:4s;">ERRO: alma fragmentada</div>
     <div class="bootText" style="animation-delay:5s;">Recuperando sessão...</div>
+</div>
+<div id="loginScreen">
+
+    <div id="loginBox">
+
+        <img src="perfil.png" id="perfil">
+
+        <h2>Mike</h2>
+
+        <input type="password" id="senhaSistema"
+        placeholder="Senha">
+
+        <button onclick="entrarSistema()">
+            Entrar
+        </button>
+
+        <p class="dica">
+            (Dica: ecos do passado.)
+        </p>
+
+    </div>
+
 </div>
 
 <!-- DESKTOP -->
@@ -192,15 +280,10 @@ body::after {
             <p>Arquivos</p>
         </div>
 
-        <div class="icon">
-            <img src="folder.png">
-            <p>Logs</p>
-        </div>
-
-        <div class="icon">
-            <img src="audio.png">
-            <p>Áudios</p>
-        </div>
+        <div class="icon" onclick="abrirSenhaLogs()">
+    <img src="folder.png">
+    <p>Logs</p>
+</div>
 
     </div>
 
@@ -241,8 +324,28 @@ body::after {
 /* BOOT */
 setTimeout(() => {
     document.getElementById('bootScreen').style.display = 'none';
-    document.getElementById('desktop').style.display = 'block';
+
+    document.getElementById('loginScreen').style.display = 'flex';
+
 }, 7000);
+function entrarSistema() {
+
+    const senha =
+    document.getElementById('senhaSistema').value;
+
+    if(senha === "alma") {
+
+        document.getElementById('loginScreen').style.display = 'none';
+
+        document.getElementById('desktop').style.display = 'block';
+
+    } else {
+
+        alert("senha incorreta");
+
+    }
+
+}
 
 /* RELÓGIO */
 function atualizarHora() {
@@ -256,14 +359,92 @@ atualizarHora();
 
 /* JANELAS */
 function abrirJanela() {
-    document.getElementById('janelaArquivos').style.display = 'flex';
+    const janela = document.getElementById('janelaArquivos');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
 }
 
 function fecharJanela() {
-    document.getElementById('janelaArquivos').style.display = 'none';
+    const janela = document.getElementById('janelaArquivos');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+}
+function abrirSenhaLogs() {
+    const janela = document.getElementById('janelaSenha');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
+}
+
+function fecharSenha() {
+    const janela = document.getElementById('janelaSenha');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+}
+
+function verificarSenhaLogs() {
+    const senha = document.getElementById('senhaLogs').value;
+
+    if(senha === "alma") {
+
+        alert("ACESSO LIBERADO");
+
+    } else {
+
+        alert("senha incorreta");
+
+    }
 }
 
 </script>
+<div class="window" id="janelaSenha">
+
+    <div class="windowHeader">
+        <span>ERRO</span>
+        <span class="closeBtn" onclick="fecharSenha()">X</span>
+    </div>
+
+    <div class="windowContent" style="text-align:center;">
+
+        <img src="erro.png" width="90">
+
+        <br><br>
+
+        <p>ERRO: arquivo bloqueado.</p>
+        <p>Insira a senha para prosseguir.</p>
+
+        <br>
+
+        <input type="password" id="senhaLogs">
+
+        <button onclick="verificarSenhaLogs()">
+            ACESSAR
+        </button>
+
+        <br><br>
+
+        <p>(Dica: o vazio sempre observa.)</p>
+
+    </div>
+    
+
+</div>
+
 
 </body>
 </html>
