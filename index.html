@@ -19,77 +19,6 @@ body {
     overflow: hidden;
 }
 
-/* CMDLOGS */
-#cmdScreen {
-
-    display: none;
-
-    position: fixed;
-
-    width: 100%;
-    height: 100%;
-
-    background: black;
-
-    color: #00ff9f;
-
-    padding: 30px;
-
-    font-family: monospace;
-
-    z-index: 999;
-
-}
-
-#cmdText p {
-
-    margin-bottom: 10px;
-
-    animation: aparecer 0.3s forwards;
-
-}
-
-/* BLUE SCREEN */
-
-#blueScreen {
-
-    display: none;
-
-    position: fixed;
-
-    width: 100%;
-    height: 100%;
-
-    background: #0000aa;
-
-    color: white;
-
-    font-family: monospace;
-
-    padding-top: 150px;
-
-    text-align: center;
-
-    z-index: 1000;
-
-}
-
-#blueScreen button {
-
-    background: white;
-
-    color: #0000aa;
-
-    border: none;
-
-    padding: 10px 20px;
-
-    cursor: pointer;
-
-    font-family: monospace;
-
-}
-
 /* BOOT */
 #bootScreen {
     position: fixed;
@@ -107,20 +36,6 @@ body {
     margin-bottom: 8px;
     opacity: 0;
     animation: aparecer 0.3s forwards;
-}
-
-.greenIcon {
-
-    image-rendering: pixelated;
-
-    filter:
-    brightness(0)
-    saturate(100%)
-    invert(74%)
-    sepia(84%)
-    saturate(747%)
-    hue-rotate(90deg);
-
 }
 
 @keyframes aparecer {
@@ -168,12 +83,12 @@ body {
     image-rendering: pixelated;
 
     filter:
-brightness(0)
-saturate(100%)
-invert(74%)
-sepia(84%)
-saturate(747%)
-hue-rotate(90deg);
+    brightness(0)
+    saturate(100%)
+    invert(74%)
+    sepia(84%)
+    saturate(747%)
+    hue-rotate(90deg);
 }
 
 .dica {
@@ -322,6 +237,103 @@ body::after {
     
 }
 
+.greenIcon {
+
+    image-rendering: pixelated;
+
+    filter:
+    brightness(0)
+    saturate(100%)
+    invert(74%)
+    sepia(84%)
+    saturate(747%)
+    hue-rotate(90deg);
+
+}
+
+/* CMD */
+
+#cmdScreen {
+
+    display: none;
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background: black;
+
+    color: #00ff9f;
+
+    padding: 30px;
+
+    font-family: monospace;
+
+    z-index: 999;
+
+}
+
+#cmdText p {
+
+    margin-bottom: 10px;
+
+}
+
+/* CMD ANIMAÇÃO */
+
+.cmdLine {
+
+    opacity: 0;
+
+    animation:
+    aparecer 0.2s forwards;
+
+    margin-bottom: 10px;
+
+}
+
+/* BLUE SCREEN */
+
+#blueScreen {
+
+    display: none;
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background: #0000aa;
+
+    color: white;
+
+    font-family: monospace;
+
+    padding-top: 150px;
+
+    text-align: center;
+
+    z-index: 1000;
+
+}
+
+#blueScreen button {
+
+    background: white;
+
+    color: #0000aa;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    font-family: monospace;
+
+}
+
 </style>
 </head>
 <body>
@@ -432,7 +444,7 @@ function entrarSistema() {
     const senha =
     document.getElementById('senhaSistema').value;
 
-    if(senha === "mike") {
+    if(senha === "Mike") {
 
         document.getElementById('loginScreen').style.display = 'none';
 
@@ -521,7 +533,7 @@ function verificarSenhaLogs() {
             document.getElementById('blueScreen')
             .style.display = 'block';
 
-        }, 4000);
+        }, 7000);
 
     } else {
 
@@ -542,11 +554,6 @@ function abrirImagem() {
     }, 10);
 
 }
-function reiniciarSistema() {
-
-    location.reload();
-
-}
 
 function fecharImagem() {
 
@@ -558,6 +565,11 @@ function fecharImagem() {
     setTimeout(() => {
         janela.style.display = 'none';
     }, 150);
+
+}
+function reiniciarSistema() {
+
+    location.reload();
 
 }
 
@@ -623,20 +635,39 @@ function fecharImagem() {
 
     <div id="cmdText">
 
-        <p>CNC_OS Recovery Tool</p>
-        <br>
+        <p class="cmdLine" style="animation-delay:0s;">
+            CNC_OS Recovery Tool
+        </p>
 
-        <p>> acessando logs...</p>
-        <p>> descriptografando sessão...</p>
-        <p>> erro fatal encontrado</p>
-        <p>> memória corrompida</p>
-        <p>> tentando recuperação...</p>
+        <p class="cmdLine" style="animation-delay:1s;">
+            > acessando logs...
+        </p>
+
+        <p class="cmdLine" style="animation-delay:2s;">
+            > descriptografando sessão...
+        </p>
+
+        <p class="cmdLine" style="animation-delay:3s;">
+            > erro fatal encontrado
+        </p>
+
+        <p class="cmdLine" style="animation-delay:4s;">
+            > arquivo "firstsoul.al" corrompido
+        </p>
+
+        <p class="cmdLine" style="animation-delay:5s;">
+            > tentando recuperação...
+        </p>
+
+        <p class="cmdLine" style="animation-delay:6s;">
+            > sessão perdida
+        </p>
 
     </div>
 
 </div>
 
-<!-- TELA AZUL -->
+<!-- BLUE SCREEN -->
 <div id="blueScreen">
 
     <h1>SYSTEM ERROR</h1>
@@ -662,3 +693,4 @@ function fecharImagem() {
 </body>
 </html>
 ```
+
