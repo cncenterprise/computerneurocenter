@@ -1,102 +1,341 @@
+# Template de Interface de Sistema Operacional para ARG
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Alma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema // ALMA_OS</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: black;
+    background: black;
     color: #00ff9f;
     font-family: monospace;
-    text-align: center;
-    padding: 50px;
+    overflow: hidden;
 }
 
-img {
-    max-width: 80%;
+/* BOOT */
+#bootScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bootText {
+    font-size: 18px;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: aparecer 0.3s forwards;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+    }
+}
+
+/* SISTEMA */
+#desktop {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+        url('wallpaper.png');
+    background-size: cover;
+    padding: 20px;
+}
+
+/* TOPBAR */
+#topbar {
+    width: 100%;
+    height: 40px;
     border: 1px solid #00ff9f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
     margin-bottom: 20px;
+    background: rgba(0,0,0,0.6);
 }
 
-input {
-    padding: 10px;
-    background: black;
-    border: 1px solid #00ff9f;
-    color: #00ff9f;
+/* ÍCONES */
+#icons {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-button {
-    padding: 10px;
-    background: black;
+.icon {
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon:hover {
+    transform: scale(1.05);
+}
+
+.icon img {
+    width: 64px;
+    margin-bottom: 10px;
+}
+
+/* JANELA */
+.window {
+    position: absolute;
+    width: 700px;
+    height: 450px;
+    background: rgba(0,0,0,0.95);
     border: 1px solid #00ff9f;
-    color: #00ff9f;
+    top: 100px;
+    left: 120px;
+    display: none;
+    flex-direction: column;
+}
+
+.windowHeader {
+    height: 35px;
+    border-bottom: 1px solid #00ff9f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.closeBtn {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #003322;
+.windowContent {
+    padding: 15px;
+    overflow-y: auto;
+    flex: 1;
 }
 
-.hidden {
-    display: none;
+.file {
+    padding: 10px;
+    border: 1px solid #00ff9f;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
-/* Tela final */
-#telaFinal {
+.file:hover {
+    background: rgba(0,255,159,0.1);
+}
+
+/* TERMINAL */
+#terminal {
+    margin-top: 20px;
+    border: 1px solid #00ff9f;
+    padding: 10px;
+    height: 120px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.8);
+}
+
+/* EFEITO CRT */
+body::after {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: black;
-    color: #00ff9f;
-    display: none;
-    justify-content: center;
-    align-items: center;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
 }
-</style>
 
+</style>
 </head>
 <body>
 
-<h1>ALMA</h1>
-
-<p>Lost Lobby 4</p>
-
-<img src="Alma.png" alt="arquivo">
-
-<br><br>
-
-<input type="text" id="senha" placeholder="Resposta aqui">
-<button onclick="verificarSenha()">Ir</button>
-
-<p id="erro" class="hidden">incorreto.</p>
-
-<div id="conteudoSecreto" class="hidden">
-    <h2>Acesso liberado</h2>
-    <p>Continue. Nos liberte.</p>
+<!-- BOOT -->
+<div id="bootScreen">
+    <div class="bootText" style="animation-delay:0s;">ALMA_OS v3.7</div>
+    <div class="bootText" style="animation-delay:1s;">Inicializando sistema...</div>
+    <div class="bootText" style="animation-delay:2s;">Carregando arquivos...</div>
+    <div class="bootText" style="animation-delay:3s;">Verificando integridade...</div>
+    <div class="bootText" style="animation-delay:4s;">ERRO: memória fragmentada</div>
+    <div class="bootText" style="animation-delay:5s;">Recuperando sessão...</div>
 </div>
 
-<!-- Tela final -->
-<div id="telaFinal">
-    <h1 style="font-size:80px;">Lost Lobby 5 em andamento...</h1>
-</div>
+<!-- DESKTOP -->
+<div id="desktop">
 
-<!-- dica escondida -->
-<!-- talvez a resposta esteja invertida -->
+    <div id="topbar">
+        <span>ALMA_OS</span>
+        <span id="hora"></span>
+    </div>
+
+    <div id="icons">
+
+        <div class="icon" onclick="abrirJanela()">
+            <img src="folder.png">
+            <p>Arquivos</p>
+        </div>
+
+        <div class="icon">
+            <img src="warning.png">
+            <p>Logs</p>
+        </div>
+
+        <div class="icon">
+            <img src="audio.png">
+            <p>Áudios</p>
+        </div>
+
+    </div>
+
+    <!-- JANELA -->
+    <div class="window" id="janelaArquivos">
+
+        <div class="windowHeader">
+            <span>Arquivos Recuperados</span>
+            <span class="closeBtn" onclick="fecharJanela()">X</span>
+        </div>
+
+        <div class="windowContent">
+
+            <div class="file">
+                arquivo_01.png
+            </div>
+
+            <div class="file">
+                audio_perdido.mp3
+            </div>
+
+            <div class="file">
+                memoria_fragmentada.txt
+            </div>
+
+            <div class="file">
+                NAO_ABRA.iso
+            </div>
+
+            <div id="terminal">
+                > recuperação parcial concluída
+                <br>
+                > 4 arquivos encontrados
+                <br>
+                > usuário desconhecido
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
-function verificarSenha() {
-    var senha = document.getElementById("senha").value;
 
-    if(senha === "eles me querem dentro mike") {
-        document.getElementById("telaFinal").style.display = "flex";
-    } else {
-        document.getElementById("erro").style.display = "block";
-    }
+/* BOOT */
+setTimeout(() => {
+    document.getElementById('bootScreen').style.display = 'none';
+    document.getElementById('desktop').style.display = 'block';
+}, 7000);
+
+/* RELÓGIO */
+function atualizarHora() {
+    const agora = new Date();
+    const hora = agora.toLocaleTimeString();
+    document.getElementById('hora').innerText = hora;
 }
+
+setInterval(atualizarHora, 1000);
+atualizarHora();
+
+/* JANELAS */
+function abrirJanela() {
+    document.getElementById('janelaArquivos').style.display = 'flex';
+}
+
+function fecharJanela() {
+    document.getElementById('janelaArquivos').style.display = 'none';
+}
+
 </script>
 
 </body>
 </html>
+```
+
+# Como usar
+
+## 1. Arquivos necessários
+
+Envie para o repositório:
+
+* `index.html`
+* `wallpaper.png`
+* `folder.png`
+* `warning.png`
+* `audio.png`
+
+## 2. Alterar arquivos do ARG
+
+Você pode editar essa parte:
+
+```html
+<div class="file">
+    arquivo_01.png
+</div>
+```
+
+E colocar:
+
+* imagens
+* áudios
+* logs
+* documentos
+* pistas
+
+## 3. Transformar os arquivos em links
+
+Exemplo:
+
+```html
+<div class="file">
+    <a href="pista1.html">arquivo_01.png</a>
+</div>
+```
+
+## 4. Ideias que combinam MUITO com esse estilo
+
+* arquivos corrompidos
+* mensagens escondidas no código
+* glitches visuais
+* pastas desbloqueadas com senha
+* arquivos que aparecem depois de atualizar o site
+* logs estranhos no terminal
+
+## 5. Atmosfera parecida com visual novel / sistema fictício
+
+O estilo foi pensado para lembrar:
+
+* interfaces de jogos psicológicos
+* sistemas operacionais fictícios
+* desktops misteriosos
+* arquivos “recuperados”
+
+sem copiar diretamente nenhum jogo específico.
