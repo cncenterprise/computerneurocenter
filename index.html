@@ -19,6 +19,77 @@ body {
     overflow: hidden;
 }
 
+/* CMDLOGS */
+#cmdScreen {
+
+    display: none;
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background: black;
+
+    color: #00ff9f;
+
+    padding: 30px;
+
+    font-family: monospace;
+
+    z-index: 999;
+
+}
+
+#cmdText p {
+
+    margin-bottom: 10px;
+
+    animation: aparecer 0.3s forwards;
+
+}
+
+/* BLUE SCREEN */
+
+#blueScreen {
+
+    display: none;
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    background: #0000aa;
+
+    color: white;
+
+    font-family: monospace;
+
+    padding-top: 150px;
+
+    text-align: center;
+
+    z-index: 1000;
+
+}
+
+#blueScreen button {
+
+    background: white;
+
+    color: #0000aa;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    font-family: monospace;
+
+}
+
 /* BOOT */
 #bootScreen {
     position: fixed;
@@ -36,6 +107,20 @@ body {
     margin-bottom: 8px;
     opacity: 0;
     animation: aparecer 0.3s forwards;
+}
+
+.greenIcon {
+
+    image-rendering: pixelated;
+
+    filter:
+    brightness(0)
+    saturate(100%)
+    invert(74%)
+    sepia(84%)
+    saturate(747%)
+    hue-rotate(90deg);
+
 }
 
 @keyframes aparecer {
@@ -81,6 +166,14 @@ body {
     border: 1px solid #00ff9f;
 
     image-rendering: pixelated;
+
+    filter:
+brightness(0)
+saturate(100%)
+invert(74%)
+sepia(84%)
+saturate(747%)
+hue-rotate(90deg);
 }
 
 .dica {
@@ -339,7 +432,7 @@ function entrarSistema() {
     const senha =
     document.getElementById('senhaSistema').value;
 
-    if(senha === "Mike") {
+    if(senha === "mike") {
 
         document.getElementById('loginScreen').style.display = 'none';
 
@@ -405,17 +498,37 @@ function fecharSenha() {
 }
 
 function verificarSenhaLogs() {
-    const senha = document.getElementById('senhaLogs').value;
+
+    const senha =
+    document.getElementById('senhaLogs').value;
 
     if(senha === "se foi") {
 
-        alert("MORRA");
+        document.getElementById('janelaSenha')
+        .style.display = 'none';
+
+        document.getElementById('desktop')
+        .style.display = 'none';
+
+        document.getElementById('cmdScreen')
+        .style.display = 'block';
+
+        setTimeout(() => {
+
+            document.getElementById('cmdScreen')
+            .style.display = 'none';
+
+            document.getElementById('blueScreen')
+            .style.display = 'block';
+
+        }, 4000);
 
     } else {
 
         alert("senha incorreta");
 
     }
+
 }
 function abrirImagem() {
 
@@ -427,6 +540,11 @@ function abrirImagem() {
     setTimeout(() => {
         janela.classList.add('show');
     }, 10);
+
+}
+function reiniciarSistema() {
+
+    location.reload();
 
 }
 
@@ -453,7 +571,7 @@ function fecharImagem() {
 
     <div class="windowContent" style="text-align:center;">
 
-        <img src="erro.png" width="90">
+        <img src="erro.png" width="90" class="greenIcon">
 
         <br><br>
 
@@ -500,7 +618,47 @@ function fecharImagem() {
 
 </div>
 
+<!-- CMD -->
+<div id="cmdScreen">
+
+    <div id="cmdText">
+
+        <p>CNC_OS Recovery Tool</p>
+        <br>
+
+        <p>> acessando logs...</p>
+        <p>> descriptografando sessão...</p>
+        <p>> erro fatal encontrado</p>
+        <p>> memória corrompida</p>
+        <p>> tentando recuperação...</p>
+
+    </div>
+
+</div>
+
+<!-- TELA AZUL -->
+<div id="blueScreen">
+
+    <h1>SYSTEM ERROR</h1>
+
+    <br>
+
+    <p>
+        A sessão não pôde ser recuperada.
+    </p>
+
+    <p>
+        Código: 0x0000ALMA
+    </p>
+
+    <br><br>
+
+    <button onclick="reiniciarSistema()">
+        REINICIAR
+    </button>
+
+</div>
+
 </body>
 </html>
 ```
-
