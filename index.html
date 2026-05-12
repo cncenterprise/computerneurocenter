@@ -1,6 +1,3 @@
-# Template de Interface de Sistema Operacional para ARG
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -172,11 +169,11 @@ body::after {
 
 <!-- BOOT -->
 <div id="bootScreen">
-    <div class="bootText" style="animation-delay:0s;">ALMA_OS v3.7</div>
+    <div class="bootText" style="animation-delay:0s;">CNC.OS</div>
     <div class="bootText" style="animation-delay:1s;">Inicializando sistema...</div>
     <div class="bootText" style="animation-delay:2s;">Carregando arquivos...</div>
     <div class="bootText" style="animation-delay:3s;">Verificando integridade...</div>
-    <div class="bootText" style="animation-delay:4s;">ERRO: memória fragmentada</div>
+    <div class="bootText" style="animation-delay:4s;">ERRO: alma fragmentada</div>
     <div class="bootText" style="animation-delay:5s;">Recuperando sessão...</div>
 </div>
 
@@ -184,7 +181,7 @@ body::after {
 <div id="desktop">
 
     <div id="topbar">
-        <span>ALMA_OS</span>
+        <span>CNC_OS_2.0</span>
         <span id="hora"></span>
     </div>
 
@@ -196,7 +193,7 @@ body::after {
         </div>
 
         <div class="icon">
-            <img src="warning.png">
+            <img src="folder.png">
             <p>Logs</p>
         </div>
 
@@ -211,34 +208,26 @@ body::after {
     <div class="window" id="janelaArquivos">
 
         <div class="windowHeader">
-            <span>Arquivos Recuperados</span>
+            <span>Arquivos</span>
             <span class="closeBtn" onclick="fecharJanela()">X</span>
         </div>
 
         <div class="windowContent">
 
             <div class="file">
-                arquivo_01.png
+                Lostlobby5.png
             </div>
 
             <div class="file">
-                audio_perdido.mp3
-            </div>
-
-            <div class="file">
-                memoria_fragmentada.txt
-            </div>
-
-            <div class="file">
-                NAO_ABRA.iso
+                prototipo1irmao.txt
             </div>
 
             <div id="terminal">
                 > recuperação parcial concluída
                 <br>
-                > 4 arquivos encontrados
+                > 2 arquivos salvos
                 <br>
-                > usuário desconhecido
+                > Usuario: "##%¨@&*#"
             </div>
 
         </div>
