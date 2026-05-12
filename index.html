@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema // ALMA_OS</title>
+<title>CNC_OS</title>
 
 <style>
 * {
@@ -239,7 +239,7 @@ body::after {
     <div class="bootText" style="animation-delay:1s;">Inicializando sistema...</div>
     <div class="bootText" style="animation-delay:2s;">Carregando arquivos...</div>
     <div class="bootText" style="animation-delay:3s;">Verificando integridade...</div>
-    <div class="bootText" style="animation-delay:4s;">ERRO: alma fragmentada</div>
+    <div class="bootText" style="animation-delay:4s;">ERRO: Sessão quebrada...</div>
     <div class="bootText" style="animation-delay:5s;">Recuperando sessão...</div>
 </div>
 <div id="loginScreen">
@@ -248,7 +248,7 @@ body::after {
 
         <img src="perfil.png" id="perfil">
 
-        <h2>Mike</h2>
+        <h2>##%¨@&*#</h2>
 
         <input type="password" id="senhaSistema"
         placeholder="Senha">
@@ -258,7 +258,7 @@ body::after {
         </button>
 
         <p class="dica">
-            (Dica: ecos do passado.)
+            (Dica: Meu querido.)
         </p>
 
     </div>
@@ -298,12 +298,18 @@ body::after {
         <div class="windowContent">
 
             <div class="file">
-                Lostlobby5.png
-            </div>
+    <a href=""
+    target="_blank"
+    style="color:#00ff9f; text-decoration:none;">
 
-            <div class="file">
-                prototipo1irmao.txt
-            </div>
+        Lostlobby5
+
+    </a>
+</div>
+
+            <div class="file" onclick="abrirImagem()">
+    primeira alma.png
+</div>
 
             <div id="terminal">
                 > recuperação parcial concluída
@@ -333,7 +339,7 @@ function entrarSistema() {
     const senha =
     document.getElementById('senhaSistema').value;
 
-    if(senha === "alma") {
+    if(senha === "Mike") {
 
         document.getElementById('loginScreen').style.display = 'none';
 
@@ -377,6 +383,7 @@ function fecharJanela() {
         janela.style.display = 'none';
     }, 150);
 }
+
 function abrirSenhaLogs() {
     const janela = document.getElementById('janelaSenha');
 
@@ -400,15 +407,40 @@ function fecharSenha() {
 function verificarSenhaLogs() {
     const senha = document.getElementById('senhaLogs').value;
 
-    if(senha === "alma") {
+    if(senha === "se foi") {
 
-        alert("ACESSO LIBERADO");
+        alert("MORRA");
 
     } else {
 
         alert("senha incorreta");
 
     }
+}
+function abrirImagem() {
+
+    const janela =
+    document.getElementById('janelaImagem');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
+
+}
+
+function fecharImagem() {
+
+    const janela =
+    document.getElementById('janelaImagem');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+
 }
 
 </script>
@@ -425,7 +457,7 @@ function verificarSenhaLogs() {
 
         <br><br>
 
-        <p>ERRO: arquivo bloqueado.</p>
+        <p>arquivo bloqueado.</p>
         <p>Insira a senha para prosseguir.</p>
 
         <br>
@@ -438,74 +470,37 @@ function verificarSenhaLogs() {
 
         <br><br>
 
-        <p>(Dica: o vazio sempre observa.)</p>
-
     </div>
     
 
 </div>
 
+<div class="window" id="janelaImagem">
+
+    <div class="windowHeader">
+        <span>primeira alma.png</span>
+
+        <span class="closeBtn"
+        onclick="fecharImagem()">
+            X
+        </span>
+    </div>
+
+    <div class="windowContent"
+    style="display:flex;
+    justify-content:center;
+    align-items:center;">
+
+        <img src="primeiraalma.png"
+        style="max-width:100%;
+        max-height:100%;
+        image-rendering:pixelated;">
+
+    </div>
+
+</div>
 
 </body>
 </html>
 ```
 
-# Como usar
-
-## 1. Arquivos necessários
-
-Envie para o repositório:
-
-* `index.html`
-* `wallpaper.png`
-* `folder.png`
-* `warning.png`
-* `audio.png`
-
-## 2. Alterar arquivos do ARG
-
-Você pode editar essa parte:
-
-```html
-<div class="file">
-    arquivo_01.png
-</div>
-```
-
-E colocar:
-
-* imagens
-* áudios
-* logs
-* documentos
-* pistas
-
-## 3. Transformar os arquivos em links
-
-Exemplo:
-
-```html
-<div class="file">
-    <a href="pista1.html">arquivo_01.png</a>
-</div>
-```
-
-## 4. Ideias que combinam MUITO com esse estilo
-
-* arquivos corrompidos
-* mensagens escondidas no código
-* glitches visuais
-* pastas desbloqueadas com senha
-* arquivos que aparecem depois de atualizar o site
-* logs estranhos no terminal
-
-## 5. Atmosfera parecida com visual novel / sistema fictício
-
-O estilo foi pensado para lembrar:
-
-* interfaces de jogos psicológicos
-* sistemas operacionais fictícios
-* desktops misteriosos
-* arquivos “recuperados”
-
-sem copiar diretamente nenhum jogo específico.
