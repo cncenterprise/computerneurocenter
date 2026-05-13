@@ -80,6 +80,8 @@ body {
 
     border: 1px solid #00ff9f;
 
+    box-shadow: 0 0 15px #00ff9f;
+
     image-rendering: pixelated;
 
     filter:
@@ -183,6 +185,9 @@ contrast(1.2);
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
+    
+    cursor: move;
+    user-select: none;
 }
 
 .closeBtn {
@@ -294,6 +299,8 @@ body::after {
     animation-fill-mode: forwards;
 
 }
+
+
 /* BLUE SCREEN */
 
 #blueScreen {
@@ -354,7 +361,7 @@ body::after {
 
         <img src="perfil.png" id="perfil">
 
-        <h2>##%¨@&*#</h2>
+        <h2>##%#@&</h2>
 
         <input type="password" id="senhaSistema"
         placeholder="Senha">
@@ -376,6 +383,7 @@ body::after {
 
     <div id="topbar">
         <span>CNC_OS_2.0</span>
+        <span>©1992 Computation Neuro Center</span>
         <span id="hora"></span>
     </div>
 
@@ -574,6 +582,55 @@ function reiniciarSistema() {
 
 }
 
+/* MOVER JANELAS */
+
+const janelas =
+document.querySelectorAll(".window");
+
+janelas.forEach((janela) => {
+
+    const header =
+    janela.querySelector(".windowHeader");
+
+    let movendo = false;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    header.addEventListener("mousedown", (e) => {
+
+        movendo = true;
+
+        offsetX =
+        e.clientX - janela.offsetLeft;
+
+        offsetY =
+        e.clientY - janela.offsetTop;
+
+        janela.style.zIndex = 500;
+
+    });
+
+    document.addEventListener("mousemove", (e) => {
+
+        if(!movendo) return;
+
+        janela.style.left =
+        (e.clientX - offsetX) + "px";
+
+        janela.style.top =
+        (e.clientY - offsetY) + "px";
+
+    });
+
+    document.addEventListener("mouseup", () => {
+
+        movendo = false;
+
+    });
+
+});
+
 </script>
 <div class="window" id="janelaSenha">
 
@@ -637,11 +694,11 @@ function reiniciarSistema() {
     <div id="cmdText">
 
         <p class="cmdLine" style="animation-delay:0s;">
-            CNC_OS Recovery Tool
+            CNC_OS Recovery Tool iniciado
         </p>
 
         <p class="cmdLine" style="animation-delay:1s;">
-            > acessando logs...
+            > tentando recuperar "Logs.data"...
         </p>
 
         <p class="cmdLine" style="animation-delay:2s;">
@@ -680,7 +737,7 @@ function reiniciarSistema() {
     </p>
 
     <p>
-        Código: 0x0000ALMA
+        Código: 0x0000AL1
     </p>
 
     <br><br>
