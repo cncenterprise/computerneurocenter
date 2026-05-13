@@ -345,7 +345,6 @@ body::after {
 </style>
 </head>
 
-
 <body>
 
 <!-- BOOT -->
@@ -505,6 +504,196 @@ ativarMoverJanela("janelaArquivos");
 ativarMoverJanela("janelaSenha");
 
 ativarMoverJanela("janelaImagem");
+
+/* BOOT */
+setTimeout(() => {
+    document.getElementById('bootScreen').style.display = 'none';
+
+    document.getElementById('loginScreen').style.display = 'flex';
+
+}, 7000);
+function entrarSistema() {
+
+    const senha =
+    document.getElementById('senhaSistema').value;
+
+    if(senha === "mike") {
+
+        document.getElementById('loginScreen').style.display = 'none';
+
+        document.getElementById('desktop').style.display = 'block';
+
+    } else {
+
+        alert("senha incorreta");
+
+    }
+
+}
+
+/* RELÓGIO */
+function atualizarHora() {
+    const agora = new Date();
+    const hora = agora.toLocaleTimeString();
+    document.getElementById('hora').innerText = hora;
+}
+
+setInterval(atualizarHora, 1000);
+atualizarHora();
+
+/* JANELAS */
+function abrirJanela() {
+    const janela = document.getElementById('janelaArquivos');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
+}
+
+function fecharJanela() {
+    const janela = document.getElementById('janelaArquivos');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+}
+
+function abrirSenhaLogs() {
+    const janela = document.getElementById('janelaSenha');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
+}
+
+function fecharSenha() {
+    const janela = document.getElementById('janelaSenha');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+}
+
+function verificarSenhaLogs() {
+
+    const senha =
+    document.getElementById('senhaLogs').value;
+
+    if(senha === "se foi") {
+
+        document.getElementById('janelaSenha')
+        .style.display = 'none';
+
+        document.getElementById('desktop')
+        .style.display = 'none';
+
+        document.getElementById('cmdScreen')
+        .style.display = 'block';
+
+        setTimeout(() => {
+
+            document.getElementById('cmdScreen')
+            .style.display = 'none';
+
+            document.getElementById('blueScreen')
+            .style.display = 'block';
+
+        }, 7000);
+
+    } else {
+
+        alert("senha incorreta");
+
+    }
+
+}
+function abrirImagem() {
+
+    const janela =
+    document.getElementById('janelaImagem');
+
+    janela.style.display = 'flex';
+
+    setTimeout(() => {
+        janela.classList.add('show');
+    }, 10);
+
+}
+
+function fecharImagem() {
+
+    const janela =
+    document.getElementById('janelaImagem');
+
+    janela.classList.remove('show');
+
+    setTimeout(() => {
+        janela.style.display = 'none';
+    }, 150);
+
+}
+function reiniciarSistema() {
+
+    location.reload();
+
+}
+
+/* MOVER JANELAS */
+
+const janelas =
+document.querySelectorAll(".window");
+
+janelas.forEach((janela) => {
+
+    const header =
+    janela.querySelector(".windowHeader");
+
+    let movendo = false;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    header.addEventListener("mousedown", (e) => {
+
+        movendo = true;
+
+        offsetX =
+        e.clientX - janela.offsetLeft;
+
+        offsetY =
+        e.clientY - janela.offsetTop;
+
+        janela.style.zIndex = 500;
+
+    });
+
+    document.addEventListener("mousemove", (e) => {
+
+        if(!movendo) return;
+
+        janela.style.left =
+        (e.clientX - offsetX) + "px";
+
+        janela.style.top =
+        (e.clientY - offsetY) + "px";
+
+    });
+
+    document.addEventListener("mouseup", () => {
+
+        movendo = false;
+
+    });
+
+});
 
 </script>
 <div class="window" id="janelaSenha">
