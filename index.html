@@ -344,6 +344,8 @@ body::after {
 
 </style>
 </head>
+
+
 <body>
 
 <!-- BOOT -->
@@ -443,11 +445,16 @@ body::after {
 
 /* BOOT */
 setTimeout(() => {
-    document.getElementById('bootScreen').style.display = 'none';
 
-    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('bootScreen')
+    .style.display = 'none';
+
+    document.getElementById('loginScreen')
+    .style.display = 'flex';
 
 }, 7000);
+
+/* LOGIN */
 function entrarSistema() {
 
     const senha =
@@ -455,9 +462,11 @@ function entrarSistema() {
 
     if(senha === "mike") {
 
-        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('loginScreen')
+        .style.display = 'none';
 
-        document.getElementById('desktop').style.display = 'block';
+        document.getElementById('desktop')
+        .style.display = 'block';
 
     } else {
 
@@ -469,55 +478,84 @@ function entrarSistema() {
 
 /* RELÓGIO */
 function atualizarHora() {
+
     const agora = new Date();
-    const hora = agora.toLocaleTimeString();
-    document.getElementById('hora').innerText = hora;
+
+    const hora =
+    agora.toLocaleTimeString();
+
+    document.getElementById('hora')
+    .innerText = hora;
+
 }
 
 setInterval(atualizarHora, 1000);
+
 atualizarHora();
 
-/* JANELAS */
+/* JANELA ARQUIVOS */
 function abrirJanela() {
-    const janela = document.getElementById('janelaArquivos');
+
+    const janela =
+    document.getElementById('janelaArquivos');
 
     janela.style.display = 'flex';
 
     setTimeout(() => {
+
         janela.classList.add('show');
+
     }, 10);
+
 }
 
 function fecharJanela() {
-    const janela = document.getElementById('janelaArquivos');
+
+    const janela =
+    document.getElementById('janelaArquivos');
 
     janela.classList.remove('show');
 
     setTimeout(() => {
+
         janela.style.display = 'none';
+
     }, 150);
+
 }
 
+/* JANELA LOGS */
 function abrirSenhaLogs() {
-    const janela = document.getElementById('janelaSenha');
+
+    const janela =
+    document.getElementById('janelaSenha');
 
     janela.style.display = 'flex';
 
     setTimeout(() => {
+
         janela.classList.add('show');
+
     }, 10);
+
 }
 
 function fecharSenha() {
-    const janela = document.getElementById('janelaSenha');
+
+    const janela =
+    document.getElementById('janelaSenha');
 
     janela.classList.remove('show');
 
     setTimeout(() => {
+
         janela.style.display = 'none';
+
     }, 150);
+
 }
 
+/* SENHA LOGS */
 function verificarSenhaLogs() {
 
     const senha =
@@ -551,6 +589,8 @@ function verificarSenhaLogs() {
     }
 
 }
+
+/* IMAGEM */
 function abrirImagem() {
 
     const janela =
@@ -559,7 +599,9 @@ function abrirImagem() {
     janela.style.display = 'flex';
 
     setTimeout(() => {
+
         janela.classList.add('show');
+
     }, 10);
 
 }
@@ -572,20 +614,28 @@ function fecharImagem() {
     janela.classList.remove('show');
 
     setTimeout(() => {
+
         janela.style.display = 'none';
+
     }, 150);
 
 }
+
+/* REINICIAR */
 function reiniciarSistema() {
 
     location.reload();
 
 }
 
+/* ========================= */
 /* MOVER JANELAS */
+/* ========================= */
 
 const janelas =
 document.querySelectorAll(".window");
+
+let maiorZ = 100;
 
 janelas.forEach((janela) => {
 
@@ -607,7 +657,9 @@ janelas.forEach((janela) => {
         offsetY =
         e.clientY - janela.offsetTop;
 
-        janela.style.zIndex = 500;
+        maiorZ++;
+
+        janela.style.zIndex = maiorZ;
 
     });
 
