@@ -442,69 +442,6 @@ body::after {
 
 <script>
 
-/* ========================= */
-/* MOVER TODAS AS JANELAS */
-/* ========================= */
-
-let maiorZ = 100;
-
-function ativarMoverJanela(idJanela) {
-
-    const janela =
-    document.getElementById(idJanela);
-
-    const header =
-    janela.querySelector(".windowHeader");
-
-    let movendo = false;
-
-    let offsetX = 0;
-    let offsetY = 0;
-
-    header.addEventListener("mousedown", (e) => {
-
-        movendo = true;
-
-        offsetX =
-        e.clientX - janela.offsetLeft;
-
-        offsetY =
-        e.clientY - janela.offsetTop;
-
-        maiorZ++;
-
-        janela.style.zIndex = maiorZ;
-
-    });
-
-    document.addEventListener("mousemove", (e) => {
-
-        if(!movendo) return;
-
-        janela.style.left =
-        (e.clientX - offsetX) + "px";
-
-        janela.style.top =
-        (e.clientY - offsetY) + "px";
-
-    });
-
-    document.addEventListener("mouseup", () => {
-
-        movendo = false;
-
-    });
-
-}
-
-/* ATIVAR EM TODAS */
-
-ativarMoverJanela("janelaArquivos");
-
-ativarMoverJanela("janelaSenha");
-
-ativarMoverJanela("janelaImagem");
-
 /* BOOT */
 setTimeout(() => {
     document.getElementById('bootScreen').style.display = 'none';
@@ -695,6 +632,67 @@ janelas.forEach((janela) => {
 
 });
 
+/* MOVER TODAS AS JANELAS */
+
+let maiorZ = 100;
+
+function ativarMoverJanela(idJanela) {
+
+    const janela =
+    document.getElementById(idJanela);
+
+    const header =
+    janela.querySelector(".windowHeader");
+
+    let movendo = false;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    header.addEventListener("mousedown", (e) => {
+
+        movendo = true;
+
+        offsetX =
+        e.clientX - janela.offsetLeft;
+
+        offsetY =
+        e.clientY - janela.offsetTop;
+
+        maiorZ++;
+
+        janela.style.zIndex = maiorZ;
+
+    });
+
+    document.addEventListener("mousemove", (e) => {
+
+        if(!movendo) return;
+
+        janela.style.left =
+        (e.clientX - offsetX) + "px";
+
+        janela.style.top =
+        (e.clientY - offsetY) + "px";
+
+    });
+
+    document.addEventListener("mouseup", () => {
+
+        movendo = false;
+
+    });
+
+}
+
+/* ATIVAR EM TODAS */
+
+ativarMoverJanela("janelaArquivos");
+
+ativarMoverJanela("janelaSenha");
+
+ativarMoverJanela("janelaImagem");
+
 </script>
 <div class="window" id="janelaSenha">
 
@@ -751,6 +749,7 @@ janelas.forEach((janela) => {
     </div>
 
 </div>
+
 
 <!-- CMD -->
 <div id="cmdScreen">
